@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermakk\MoonshineTableColorize\Colorize\Enums;
+namespace Ermakk\MoonshineTableColorize\Enums;
 
 enum TypeFieldColorize: string
 {
