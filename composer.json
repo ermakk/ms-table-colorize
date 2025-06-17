@@ -26,7 +26,7 @@
     "source": "https://github.com/ermakk/ms-table-colorize"
   },
   "require": {
-    "php": "^8.3"
+    "php": "^8.2"
   },
   "require-dev": {
     "moonshine/moonshine": "^3.12.6"
