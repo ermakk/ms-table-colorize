@@ -1,0 +1,64 @@
+{
+  "name": "ermakk/ms-table-colorize",
+  "description": "Colorize Index table in Resource for MoonShine admin panel v^3.",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "table",
+    "customize",
+    "colorize",
+    "selection",
+    "trAttribute",
+    "moonshine",
+    "color",
+    "plugin"
+  ],
+  "authors": [
+    {
+      "name": "Ivan Losev",
+      "email": "los-van@mail.ru",
+      "homepage": "https://github.com/ermakk",
+      "role": "Owner"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/ermakk/ms-table-colorize/issues",
+    "source": "https://github.com/ermakk/ms-table-colorize"
+  },
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "moonshine/moonshine": "^3.12.6"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Ermakk\\MoonshineTableColorize\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ermakk\\MoonshineTableColorize\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Ermakk\\MoonshineTableColorize\\Providers\\MoonShineColorizeServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+  },
+  "conflict": {
+    "moonshine/moonshine": "<3"
+  }
+}
