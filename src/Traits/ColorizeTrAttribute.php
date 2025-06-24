@@ -13,14 +13,6 @@ use MoonShine\Support\ListOf;
 trait ColorizeTrAttribute
 {
 
-    protected function topButtons(): ListOf
-    {
-        return $this->topButtons()
-            ->add(
-                ColorizeButton::make(__('moonshine-table-colorize::ui.buttons.colorize.label'))
-                    ->for($this)
-            );
-    }
     private function getColorizeAttribute(): string
     {
         return $this->colorizeStyleAttribute ?? config('moonshine-table-colorize.attribute', 'background-color');
@@ -63,7 +55,7 @@ trait ColorizeTrAttribute
         ): array
         {
             $style = '';
-            if($colorizeSets && is_countable($colorizeSets)) {
+            if ($colorizeSets && is_countable($colorizeSets)) {
                 foreach ($colorizeSets as $set) {
                     $valueSource = $data?->getOriginal()?->{$set['sourceColumn']} ?? '';
                     $valueTarget = null;
@@ -81,17 +73,17 @@ trait ColorizeTrAttribute
                 }
                 $operator = $set['operator'];
                 if ($operator == '=') $operator = '==';
-                if(eval( 'return "' . $valueSource . '" ' . $operator . ' "' . $valueTarget . '";') && $valueSource !== ''){
-                    $style .= $colorizeStyleAttribute . ': '. $set['color'];
+                if (eval('return "' . $valueSource . '" ' . $operator . ' "' . $valueTarget . '";') && $valueSource !== '') {
+                    $style .= $colorizeStyleAttribute . ': ' . $set['color'];
                 }
             }
-            if( !is_null($data?->getOriginal()->deleted_at) && $this->getSoftDeleteEnable()) {
+            if (!is_null($data?->getOriginal()->deleted_at) && $this->getSoftDeleteEnable()) {
                 return [
-                    'style' => $colorizeStyleAttribute . ': '. $this->getSoftDeleteColor() .';' . $colorizeCursorClass,
+                    'style' => $colorizeStyleAttribute . ': ' . $this->getSoftDeleteColor() . ';' . $colorizeCursorClass,
                 ];
             }
             return [
-                'style'  => $style . $colorizeCursorClass,
+                'style' => $style . $colorizeCursorClass,
             ];
         };
     }

@@ -1,4 +1,4 @@
-## Плагин пользовательской покраски строк индексной таблицы в  [MoonShine Laravel admin panel](https://moonshine-laravel.com) v3
+# Модуль пользовательской покраски строк индексной таблицы в  [MoonShine Laravel admin panel](https://moonshine-laravel.com) v3
 
 Этот модуль позволяет добавить форму для раскраски строк в индекстной таблице ресурса по пользовательскому условию.
 
@@ -24,7 +24,7 @@ composer require ermakk/ms-table-colorize
 
 ## Использование
 
-Для добавления функционала, достаточно подключить трейт к ресурсу
+Для добавления базового функционала, достаточно подключить трейт к ресурсу и добавить кнопку
 ```php
 //...Resource.php
 
@@ -33,7 +33,6 @@ use Ermakk\MoonshineTableColorize\Traits\ColorizeTrAtribute;
 
 // ...
 
-// Если у вас уже есть кнопки и требуется их сохранить
 protected function topButtons(): ListOf
 {
     return parent::topButtons()
@@ -46,7 +45,33 @@ protected function topButtons(): ListOf
 
 ```
 
-По умолчанию модуль выделяет удаленные строки, 
+### Поля формы
+По умолчанию модуль использует для формы поля индексной страницы, но вы можете настроить набор полей сами.
+
+Для этого добавьте в ресурс метод `colorizeFields` который аналогично базовым методам MoonShine должен вернуть массив с набором полей
+
+```php
+//...Resource.php
+
+//class YourModelResource extends ModelResource
+use Ermakk\MoonshineTableColorize\Traits\ColorizeTrAtribute;
+
+// ...
+
+    public function colorizeFields(): array
+    {
+        return [
+            // набор полей
+        ];
+    }
+    
+// ...
+
+```
+
+### Мягкое удаление
+
+Так же из коробки плагин выделяет удаленные строки, 
 
 чтобы включить или отключить это выделение переопределите параметр `colorizeSoftDeleteEnable`
 
@@ -58,6 +83,8 @@ protected bool $colorizeSoftDeleteEnable = true; // true - включено, fal
 // ... 
 ```
 
+
+### Курсор
 Так же по умолчанию модуль добавляет стиль для курсора `cursor: pointer` строкам таблицы,
 
 чтобы включить или отключить это выделение переопределите параметр `colorizeCursorPointer`
@@ -70,6 +97,7 @@ protected bool $colorizeCursorPointer = true; // true - включено, false 
 // ... 
 ```
 
+### Css аттрибут выделения
 Вы можете изменить css аттрибут, которому будет задаваться цвет,
 
 для этого задайте это значение в строковый параметр `colorizeStyleAttribute`
