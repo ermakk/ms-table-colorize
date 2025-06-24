@@ -34,7 +34,9 @@ final class ColorizeButton extends \MoonShine\UI\Components\ActionButton
     ): \MoonShine\Contracts\UI\ActionButtonContract
     {
         $fields = [];
-        foreach ($resource->getIndexFields()->indexFields()->all() as $itemsField){
+        $baseFields = $resource->colorizeFields();
+        $baseFields = $baseFields !== [] ? $baseFields : $resource->getIndexFields()->indexFields()->all();
+        foreach ($baseFields as $itemsField){
             $fields[$itemsField->getColumn()] = $itemsField->getLabel() !== '' ? $itemsField->getLabel() : $itemsField->getColumn();
         }
         $colorizeSets = Session::get('colorize_sets.'.$resource->getUriKey().'.'.$resource->getListComponentName(), []);
